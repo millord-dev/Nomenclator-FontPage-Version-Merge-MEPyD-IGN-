@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-8">
+    <h2 mat-dialog-title>{{title}}</h2>
+  </div>
+  <div class="col-4" style="text-align: end;">
+    <button mat-icon-button class="close-button" [mat-dialog-close]="true">
+      <mat-icon class="close-icon" color="warn">close</mat-icon>
+    </button>
+  </div>
+</div>
+
+<hr>
+
+<mat-dialog-content>
+  <div class="alert alert-warning" *ngIf="anexos.length==0">
+    <p>Este objeto geográfico no tiene documentos disponibles.</p>
+  </div>
+
+  <table mat-table [dataSource]="dataSourceDocument" matSort *ngIf="anexos.length !=0">
+
+    <ng-container matColumnDef="Descripcion">
+      <th mat-header-cell *matHeaderCellDef > Descripción </th>
+      <td mat-cell *matCellDef="let row"> {{row.descripcion}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Extension">
+      <th mat-header-cell *matHeaderCellDef > Extensión </th>
+      <td mat-cell *matCellDef="let row"> {{row.extension}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="TamanoConvertido">
+      <th mat-header-cell *matHeaderCellDef > Tamaño </th>
+      <td mat-cell *matCellDef="let row"> {{row.tamanoConvertido}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Acciones">
+      <th mat-header-cell *matHeaderCellDef > </th>
+      <td mat-cell *matCellDef="let row" class="pointer" >
+        <a class="material-icons" matTooltip="Descargar documento"  [href]='sanitizerurl.bypassSecurityTrustResourceUrl(row.archivo)'  download='{{row.nombreArchivo}}'  ngClass="text-danger" >
+          cloud_download
+        </a>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsDocument"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsDocument;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No hay datos disponibles para mostrar</td>
+    </tr>
+  </table>
+ <mat-paginator *ngIf="anexos.length !=0"
+  #paginator_DocumentosGenericos
+  [pageSizeOptions]="[5, 10, 25,50, 100]"
+  aria-label="Seleccionar página"
+  [pageSize]="5"
+  [showFirstLastButtons]="true">
+  </mat-paginator>
+
+
+</mat-dialog-content>
+
+
+<mat-dialog-actions>
+  <button type="button" class="btn btn-light" [mat-dialog-close]="true">Cerrar</button>
+</mat-dialog-actions>
+
+

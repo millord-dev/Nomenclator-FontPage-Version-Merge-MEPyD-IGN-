@@ -1,0 +1,56 @@
+[
+  {
+    "CodigoOne" : "300",
+    "NombreGeografico" : "Monumento a los heroes de la restauración",
+    "NombreConocido" : "Monumeto de Santiago",
+    "TipoObjetoGeografico" : "Historico",
+    "SubTipoGeografico" : "Monumento",
+    "Provincia" : "Santiago",
+    "Municipio" : "Santiago"
+  },
+  {
+    "CodigoOne" : "200",
+    "NombreGeografico" : "Zona Colonial",
+    "NombreConocido" : "Zona Colonial",
+    "TipoObjetoGeografico" : "Hidrografia",
+    "SubTipoGeografico" : "Lago",
+    "Provincia" : "San Cristobal",
+    "Municipio" : "Villa Altagracia"
+  },
+  {
+    "CodigoOne" : "301",
+    "NombreGeografico" : "Zona Colonial",
+    "NombreConocido" : "Zona Colonial",
+    "TipoObjetoGeografico" : "Orografia",
+    "SubTipoGeografico" : "Montana",
+    "Provincia" : "Azua",
+    "Municipio" : "Azua de Compostela"
+  },
+  {
+    "CodigoOne" : "205",
+    "NombreGeografico" : "Zona Colonial",
+    "NombreConocido" : "Zona Colonial",
+    "TipoObjetoGeografico" : "Infraestructura de Transporte",
+    "SubTipoGeografico" : "Metro",
+    "Provincia" : "San Juan",
+    "Municipio" : "Valle Juelo"
+  },
+  {
+    "CodigoOne" : "001",
+    "NombreGeografico" : "Zona Colonial",
+    "NombreConocido" : "Zona Colonial",
+    "TipoObjetoGeografico" : "Lugares Poblados",
+    "SubTipoGeografico" : "Municipio",
+    "Provincia" : "Valverde",
+    "Municipio" : "El municipio"
+  },
+  {
+    "CodigoOne" : "035",
+    "NombreGeografico" : "Zona Colonial",
+    "NombreConocido" : "Zona Colonial",
+    "TipoObjetoGeografico" : "Orografica",
+    "SubTipoGeografico" : "Municipio",
+    "Provincia" : "Valverde",
+    "Municipio" : "Villa Altagracia"
+  }
+]

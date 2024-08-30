@@ -1,0 +1,343 @@
+<div class="row">
+  <div class="col-8">
+    <h2 mat-dialog-title>{{ title }}</h2>
+  </div>
+  <div class="col-4" style="text-align: end">
+    <button mat-icon-button class="close-button" [mat-dialog-close]="true">
+      <mat-icon class="close-icon" color="warn">close</mat-icon>
+    </button>
+  </div>
+</div>
+
+<hr />
+<div class="row">
+<div class="col-sm-12 alert alert-warning" *ngIf="objeto == null">
+  <p>Este objeto geográfico no tiene detalle disponibles.</p>
+</div>
+</div>
+<mat-dialog-content>
+  <div class="row">
+    <div class="col-sm-12 ">
+      <h3><strong> Datos generales</strong> </h3>
+    </div>
+    <div class="col-sm-12 " *ngIf="objeto != null">
+      <table class="table table-striped table-hover table-md" *ngIf="objeto.id != 0">
+        <tbody>
+          <tr>
+            <th>Código ONE</th>
+            <td style="text-align: left">{{ objeto.codigoOne }}</td>
+          </tr>
+          <tr>
+            <th>Nombre geográfico</th>
+            <td style="text-align: left">{{ objeto.nombreGeografico }}</td>
+          </tr>
+          <tr>
+            <th>Clase</th>
+            <td style="text-align: left">{{ objeto.nombreClaseObjeto }}</td>
+          </tr>
+          <tr>
+            <th>Sub clase</th>
+            <td style="text-align: left">{{ objeto.nombreSubClaseObjeto }}</td>
+          </tr>
+
+          <tr>
+            <th>Región</th>
+            <td style="text-align: left">
+              {{
+                objeto.nombreRegion.length != 0 ? objeto.nombreRegion : "No aplica"
+              }}
+            </td>
+          </tr>
+          <tr>
+            <th>Provincia</th>
+            <td style="text-align: left">
+              {{
+                objeto.nombreProvincia.length != 0
+                  ? objeto.nombreProvincia
+                  : "No aplica"
+              }}
+            </td>
+          </tr>
+          <tr>
+            <th>Municipio</th>
+            <td style="text-align: left">
+              {{
+                objeto.nombreMunicipio.length != 0
+                  ? objeto.nombreMunicipio
+                  : "No aplica"
+              }}
+            </td>
+          </tr>
+          <tr *ngIf="parametroEstatusDistritoMunicipal">
+            <th>Distrito municipal</th>
+            <td style="text-align: left">
+              {{
+                objeto.nombreDistritoMunicipal.length != 0
+                  ? objeto.nombreDistritoMunicipal
+                  : "No aplica"
+              }}
+            </td>
+          </tr>
+          <tr *ngIf="parametroEstatusSeccion">
+            <th>Sección</th>
+            <td style="text-align: left">
+              {{
+                objeto.nombreSeccion.length != 0
+                  ? objeto.nombreSeccion
+                  : "No aplica"
+              }}
+            </td>
+          </tr>
+          <tr *ngIf="parametroEstatusParaje">
+            <th>Paraje</th>
+            <td style="text-align: left">
+              {{
+                objeto.nombreParaje.length != 0
+                  ? objeto.nombreParaje
+                  : "No aplica"
+              }}
+            </td>
+          </tr>
+          <tr *ngIf="parametroEstatusBarrio">
+            <th>Barrio</th>
+            <td style="text-align: left">
+              {{
+                objeto.nombreBarrio.length != 0
+                  ? objeto.nombreBarrio
+                  : "No aplica"
+              }}
+            </td>
+          </tr>
+          <tr *ngIf="parametroEstatusSubbarrio">
+            <th>Sub barrio</th>
+            <td style="text-align: left">
+              {{
+                objeto.nombreSubBarrio.length != 0
+                  ? objeto.nombreSubBarrio
+                  : "No aplica"
+              }}
+            </td>
+          </tr>
+          <tr>
+            <th>Latitud (Geo.)</th>
+            <td style="text-align: left">
+              {{
+                objeto.coordenadaGeoX.length != 0
+                  ? objeto.coordenadaGeoX
+                  : "Información no disponible"
+              }}
+            </td>
+          </tr>
+          <tr>
+            <th>Longitud (Geo.)</th>
+            <td style="text-align: left">
+              {{
+                objeto.coordenadaGeoY.length != 0
+                  ? objeto.coordenadaGeoY
+                  : "Información no disponible"
+              }}
+            </td>
+          </tr>
+          <tr>
+            <th>Latitud (UTM)</th>
+            <td style="text-align: left">
+              {{
+                objeto.coordenadaUtmX.length != 0
+                  ? objeto.coordenadaUtmX
+                  : "Información no disponible"
+              }}
+            </td>
+          </tr>
+          <tr>
+            <th>Longitud (UTM)</th>
+            <td style="text-align: left">
+              {{
+                objeto.coordenadaUtmY.length != 0
+                  ? objeto.coordenadaUtmY
+                  : "Información no disponible"
+              }}
+            </td>
+          </tr>
+
+          <tr>
+            <th>Ficha</th>
+            <td style="text-align: left">
+              {{
+                objeto.ficha.length != 0
+                  ? objeto.ficha
+                  : "Información no disponible"
+              }}
+            </td>
+          </tr>
+          <tr>
+            <th>URL de ficha</th>
+            <td style="text-align: left">
+              {{
+                objeto.linkFicha.length != 0
+                  ? objeto.linkFicha
+                  : "Información no disponible"
+              }}
+            </td>
+          </tr>
+          <tr>
+            <th>Número de serie</th>
+            <td style="text-align: left">
+              {{
+                objeto.numeroSerie.length != 0
+                  ? objeto.numeroSerie
+                  : "Información no disponible"
+              }}
+            </td>
+          </tr>
+          <tr>
+            <th>Base legal</th>
+            <td style="text-align: left">
+              {{
+                objeto.baseLegal.length != 0
+                  ? objeto.baseLegal
+                  : "Información no disponible"
+              }}
+            </td>
+          </tr>
+
+          <tr>
+            <th>Área</th>
+            <td style="text-align: left">
+              {{
+                objeto.area.length != 0 ? objeto.area : "Información no disponible"
+              }}
+            </td>
+          </tr>
+          <tr>
+            <th>Longitud</th>
+            <td style="text-align: left">
+              {{
+                objeto.longitud.length != 0
+                  ? objeto.longitud
+                  : "Información no disponible"
+              }}
+            </td>
+          </tr>
+          <tr>
+            <th>Altitud</th>
+            <td style="text-align: left">
+              {{
+                objeto.altitud.length != 0
+                  ? objeto.altitud
+                  : "Información no disponible"
+              }}
+            </td>
+          </tr>
+          <tr>
+            <th>División política</th>
+            <td style="text-align: left">
+              {{
+                objeto.divisionPolitica.length != 0
+                  ? objeto.divisionPolitica
+                  : "Información no disponible"
+              }}
+            </td>
+          </tr>
+
+          <tr>
+            <th>Historia</th>
+            <td style="text-align: left">
+              {{
+                objeto.historia.length != 0
+                  ? objeto.historia
+                  : "Información no disponible"
+              }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    <div class="col-sm-12 ">
+      <h3><strong>Historial nombres locales</strong></h3>
+    </div>
+    <div class="col-sm-12 ">
+      <div *ngIf="!existeNombresLocales" class="alert alert-primary text-left" >
+        No hay nombres locales
+      </div>
+      <div *ngIf="existeNombresLocales ">
+        <table class="table table-striped table-hover table-md">
+          <thead>
+            <tr>
+              <th>Nombre </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of listadoNombresLocales   ; let i=index  ">
+              <td style="text-align: left !important">{{item.nombreLocal}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-sm-12 ">
+      <h3><strong>Historial nombres históricos</strong></h3>
+    </div>
+    <div class="col-sm-12 ">
+      <div *ngIf="!existeNombresHistoricos" class="alert alert-primary text-left"
+        role="alert">
+        No hay nombres históricos
+      </div>
+      <div *ngIf="existeNombresHistoricos ">
+        <table class="table table-striped table-hover table-sm">
+          <thead>
+            <tr>
+              <th >Nombre </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of listadoNombresHistoricos ; let i=index ">
+              <td style="text-align: left">{{item.nombreHistorico}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-sm-12 ">
+      <h3><strong>Historial población por año</strong> </h3>
+    </div>
+    <div class="col-sm-12 ">
+      <div *ngIf="!existePoblacion" class="alert alert-primary text-left" role="alert">
+        No hay poblaciones
+      </div>
+      <div *ngIf="existePoblacion" >
+        <table class="table table-striped table-hover table-sm"   tyle="text-align: left">
+          <thead>
+            <tr>
+              <th >Año censo </th>
+              <th >Hombress </th>
+              <th >Mujeres </th>
+              <th >Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of listadoPoblaciones ; let i=index ">
+              <td style="text-align: left !important">{{item.anioCenso}}</td>
+              <td style="text-align: left !important">{{item.totalHombres | number: '1.0-0'}}</td>
+              <td style="text-align: left !important">{{item.totalMujeres | number: '1.0-0'}}</td>
+              <td style="text-align: left !important">{{item.total | number: '1.0-0'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button
+    type="button"
+    class="btn btn-light"
+    style="margin-top: 30px"
+    [mat-dialog-close]="true"
+  >
+    Cerrar
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,52 @@
+import { Anexo } from './anexo';
+
+export interface Data{
+  claseObjetoId:           number;
+  subClaseObjetoId:        number;
+  estadoId:                number;
+  regionId:                number;
+  provinciaId:             number;
+  municipioId:             number;
+  distritoMunicipalId:     number;
+  codigo:                  string;
+  codigoOne:               string;
+  nombreGeografico:        string;
+  nombreLocal:             string;
+  historia:                string;
+  area:                    string;
+  altitud:                 string;
+  longitud:                string;
+  coordenadaX:             number;
+  coordenadaY:             number;
+  divisionPolitica:        string;
+  ficha:                   string;
+  linkFicha:               string;
+  numeroSerie:             string;
+  baseLegal:               string;
+  poblacionTotal:          string;
+  descripcionPoblacion:    string;
+  estatus:                 boolean;
+  borrado:                 boolean;
+  creadoPor:               number;
+  modificadoPor:           number;
+  nombreCreadoPor:         string;
+  nombreModificadoPor:     string;
+  fechaRegistro:           Date;
+  fechaModificacion:       Date;
+  nombreClaseObjeto:       string;
+  nombreSubClaseObjeto:    string;
+  nombreEstado:            string;
+  permisoPorEstado:        string;
+  nombreRegion:            string;
+  nombreProvincia:         string;
+  nombreMunicipio:         string;
+  nombreDistritoMunicipal: string;
+  imagenesCount:           number;
+  documentosCount:         number;
+  anexosCount:             number;
+  comentariosCount:        number;
+  usaurio:                 null;
+  anexos:                  Anexo[];
+  id:                      number;
+
+}

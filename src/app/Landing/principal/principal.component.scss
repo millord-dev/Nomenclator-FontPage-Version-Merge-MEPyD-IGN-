@@ -1,0 +1,152 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 15px;
+  width: 100%;
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: #198754;
+  }
+
+#info{
+  color: #2F8BE6;
+  font-size: 30px;
+}
+
+#ubication{
+  color:#C5221F ;
+  font-size: 30px;
+}
+
+#domento{
+  color: #4a4b4e;
+  font-size: 30px;
+}
+
+#image{
+  color: #198754;
+  font-size: 30px;
+
+}
+
+.overlay{
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 10, 10, 0.795);
+  cursor: default;
+}
+
+.spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.title-title{
+  width: 100%; background-color: rgb(119, 119, 119);
+  color: rgb(253, 251, 251);
+  text-align: left;
+  margin-right: 4rem;
+  word-break: break-word;
+  padding: 3rem;
+  box-shadow: 0rem 0.2rem 0.4rem rgb(0 0 0 / 70%);
+  font-size: 16px;
+}
+
+@media  (max-width:899px) and (min-width:400px) {
+  .title-title{
+    width: 100%; background-color: rgb(143, 141, 141);
+    color: rgb(253, 251, 251);
+    text-align: left;
+    margin-right: 4rem;
+    word-break: break-word;
+    padding: 3rem;
+    box-shadow: 0rem 0.2rem 0.4rem rgb(0 0 0 / 70%);
+    font-size: 12px;
+  }
+
+}
+
+
+td{
+  word-break: break-word;
+}
+
+.customizer-toggle {
+  position: absolute;
+  top: 55px;
+  width: 2.7rem;
+  height: 2.7rem;
+  left: -0.75rem;
+  text-align: center;
+  line-height: 2.7rem;
+  border-radius: 30px;
+  /*¿ border-bottom-left-radius: $border-radius; */
+  box-shadow: -3px 0px 8px rgba(#000000, 0.1);
+  z-index: inherit;
+  /* i.spinner {
+    animation-duration: 2s;
+  } */
+}
+
+mat-drawer-content {
+/*   padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; */
+
+}
+
+mat-drawer {
+  // margin: 16px;
+  /* width: 200px; */
+  border-right: none;
+  background-color: rgb(212, 212, 212);
+  color: white;
+  padding: 16px;
+  text-align: center;
+  mat-form-field {
+    background-color: rgb(245 245 245);
+  }
+  width: 250px;
+  min-width: 250px;
+  max-width: 250px;
+}
+
+mat-drawer-container{
+  /* height: calc(90vh - 65px); */
+
+}
+
+.container-fluid{
+  /* height: calc(100vh - 98px); */
+  //margin: 8px;
+  /* margin-left: 32px; */
+  //display: flex;
+  justify-content: center;
+  /* align-items: center; */
+
+  /* font-size: 2rem; */
+  color: lightgray;
+
+  border-radius: 10px;
+}

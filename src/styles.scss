@@ -1,0 +1,54 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~/node_modules/bootstrap/scss/bootstrap.scss";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+/* Ocultar Footer */
+footer.bg-gradient.text-center.text-white {
+    display: none;
+}
+
+/* Ocultar Header */
+app-navbar {
+    display: none;
+}
+
+/* Ocultar Cadt Descipcion instroductoria */
+mat-card.mat-card.mat-focus-indicator.title-title.mat-elevation-z8 {
+    display: none;
+}
+
+/* estilos para el filtro inline */
+.contendor-filtro {
+    background-color: #f9f9f9;
+    padding: 32px;
+}
+
+// .mat-form-field {
+//     width: 200px !important;}
+
+.mat-form-field {
+    width: 24% !important;
+    margin-right: 1%;
+}
+
+/* Ocultar Campo de busqueda filto adicional */
+.col-3.ms-auto {
+    display: none;
+}
+
+/* Ocultar Boton de filtro */
+button.mat-focus-indicator.customizer-toggle.mat-raised-button.mat-button-base {
+    display: none;
+}
+
+/* espaciado contenedor principal */
+
+.col-12 {
+    padding-top: 0 !important;
+    padding-bottom: 2% !important;
+}

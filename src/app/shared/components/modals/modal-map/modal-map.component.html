@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-6">
+    <h2 mat-dialog-title>{{title}}</h2>
+  </div>
+  <div class="col-6" style="text-align: end;">
+    <button mat-icon-button class="close-button" [mat-dialog-close]="true">
+      <mat-icon class="close-icon" color="warn">close</mat-icon>
+    </button>
+  </div>
+</div>
+
+<hr>
+
+<mat-dialog-content>
+  <div class="map-container">
+    <div class="map-frame">
+      <div id="map"></div>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button type="button" class="btn btn-light" [mat-dialog-close]="true">Cerrar</button>
+</mat-dialog-actions>
+
+

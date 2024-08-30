@@ -1,0 +1,378 @@
+<div class="overlay" *ngIf="!loading">
+  <div class="spinner ">
+    <mat-spinner></mat-spinner>
+  </div>
+  </div>
+<mat-drawer-container [hasBackdrop]="false">
+  <mat-drawer #drawer [mode]="'side'" style="background-color: rgb(248, 248, 248);">
+    <h2>Buscar por:</h2>
+    <form (ngSubmit)="getFilters_objetos_Server(formtemplate.value)" #formtemplate="ngForm">
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre geógrafico</mat-label>
+        <input type="text" matInput [value]="defaultVal" [(ngModel)]="select.nombreGeografico" name="nombreGeografico"
+        placeholder="">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre local</mat-label>
+        <input type="text" matInput [value]="defaultVal"  [(ngModel)]="select.nombreLocal" name="nombreLocal"
+        placeholder="">
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Clase geógrafico</mat-label>
+        <mat-select  (selectionChange)="onSelectSubClaseObjecto($event.value)" [(ngModel)]="select.claseObjetoId" name="claseObjetoId">
+          <mat-option [value]="defaultVal">Seleccionar</mat-option>
+          <mat-option *ngFor="let val of TObjecto" [value]="val.id">{{val.nombre}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Sub clase Geógrafico</mat-label>
+        <mat-select  [(ngModel)]="select.subClaseObjetoId" name="subClaseObjetoId">
+          <mat-option [value]="defaultVal">Seleccionar</mat-option>
+          <mat-option *ngFor="let val of TSubObject" [value]="val.claseObjetoId">{{val.nombre}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Región</mat-label>
+        <mat-select  (selectionChange)="onSelectRegion($event.value)" [(ngModel)]="select.regionId" name="regionId">
+          <mat-option [value]="defaultVal">Seleccionar</mat-option>
+          <mat-option *ngFor="let val of TRegion" [value]="val.id">{{val.nombre}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Provincia</mat-label>
+        <mat-select  (selectionChange)="onSelectMunicipio($event.value)" [(ngModel)]="select.provinciaId" name="provinciaId">
+          <mat-option [value]="defaultVal">Seleccionar</mat-option>
+          <mat-option #selectedProvincia *ngFor="let val of TProvincia" [value]="val.id">{{val.nombre}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Municipio</mat-label>
+        <mat-select  (selectionChange)="onSelectDistritoMunicipal($event.value)" [(ngModel)]="select.municipioId" name="municipioId">
+          <mat-option [value]="defaultVal">Seleccionar</mat-option>
+          <mat-option *ngFor="let val of TMunicipio" [value]="val.id">{{val.nombre}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Distrito Municipal</mat-label>
+        <mat-select  [(ngModel)]="select.distritoMunicipalId" name="distritoMunicipalId">
+          <mat-option [value]="defaultVal">Seleccionar</mat-option>
+          <mat-option #selected *ngFor="let val of TDistritoMunicipal" [value]="val.id">{{val.nombre}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button class="btn btn-primary" type="submit" style="margin-right: 4px; color: white; background-color: #0b5ed7;">Buscar</button>
+      <button mat-raised-button class="btn btn-info" type="button" (click)="Clear()" style="background-color:#0b5ed7;; color: white;">Limpiar</button>
+    </form>
+  </mat-drawer>
+<mat-drawer-content>
+
+    <button class="customizer-toggle" mat-raised-button (click)="drawer.toggle()" style="border-radius: 30px;" style="background-color: #0b5ed7;">
+      <mat-icon aria-hidden="true" aria-label="Example filter icon" matTooltip="Busqueda dinamica" [matTooltipPosition]="'right'" style="background-color: #0b5ed7;color: white;" >filter_list</mat-icon>
+    </button>
+
+    <div class="container-fluid ">
+      <div class="row">
+
+        <div class="col-12" style="padding-top: 2%;"  >
+          <div style="padding-bottom: 2%;">
+            <mat-card class="title-title mat-elevation-z8 "  style="background-color: #2F8BE6;color: white;">
+              <mat-card-title class="titlee" style="padding-bottom: 2%;">{{title}}</mat-card-title>
+              <mat-dialog-content>
+                {{content}}
+              </mat-dialog-content>
+            </mat-card>
+          </div>
+
+          <!-- <h1 class="text-center" style="color: #0b5ed7;">Listado de objetos geográficos</h1> -->
+          <!-- Filto inline -->
+          <div class="contendor-filtro">
+            <h2>Buscar por:</h2>
+            <form (ngSubmit)="getFilters_objetos_Server(formtemplate.value)" #formtemplate="ngForm">
+              <mat-form-field appearance="fill">
+                <mat-label>Nombre geógrafico</mat-label>
+                <input type="text" matInput [value]="defaultVal" [(ngModel)]="select.nombreGeografico" name="nombreGeografico"
+                  placeholder="">
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Nombre local</mat-label>
+                <input type="text" matInput [value]="defaultVal" [(ngModel)]="select.nombreLocal" name="nombreLocal" placeholder="">
+              </mat-form-field>
+              <mat-form-field appearance="fill">
+                <mat-label>Clase geógrafico</mat-label>
+                <mat-select (selectionChange)="onSelectSubClaseObjecto($event.value)" [(ngModel)]="select.claseObjetoId"
+                  name="claseObjetoId">
+                  <mat-option [value]="defaultVal">Seleccionar</mat-option>
+                  <mat-option *ngFor="let val of TObjecto" [value]="val.id">{{val.nombre}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            
+              <mat-form-field appearance="fill">
+                <mat-label>Sub clase Geógrafico</mat-label>
+                <mat-select [(ngModel)]="select.subClaseObjetoId" name="subClaseObjetoId">
+                  <mat-option [value]="defaultVal">Seleccionar</mat-option>
+                  <mat-option *ngFor="let val of TSubObject" [value]="val.claseObjetoId">{{val.nombre}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            
+              <mat-form-field appearance="fill">
+                <mat-label>Región</mat-label>
+                <mat-select (selectionChange)="onSelectRegion($event.value)" [(ngModel)]="select.regionId" name="regionId">
+                  <mat-option [value]="defaultVal">Seleccionar</mat-option>
+                  <mat-option *ngFor="let val of TRegion" [value]="val.id">{{val.nombre}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            
+              <mat-form-field appearance="fill">
+                <mat-label>Provincia</mat-label>
+                <mat-select (selectionChange)="onSelectMunicipio($event.value)" [(ngModel)]="select.provinciaId" name="provinciaId">
+                  <mat-option [value]="defaultVal">Seleccionar</mat-option>
+                  <mat-option #selectedProvincia *ngFor="let val of TProvincia" [value]="val.id">{{val.nombre}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            
+              <mat-form-field appearance="fill">
+                <mat-label>Municipio</mat-label>
+                <mat-select (selectionChange)="onSelectDistritoMunicipal($event.value)" [(ngModel)]="select.municipioId"
+                  name="municipioId">
+                  <mat-option [value]="defaultVal">Seleccionar</mat-option>
+                  <mat-option *ngFor="let val of TMunicipio" [value]="val.id">{{val.nombre}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            
+              <mat-form-field appearance="fill">
+                <mat-label>Distrito Municipal</mat-label>
+                <mat-select [(ngModel)]="select.distritoMunicipalId" name="distritoMunicipalId">
+                  <mat-option [value]="defaultVal">Seleccionar</mat-option>
+                  <mat-option #selected *ngFor="let val of TDistritoMunicipal" [value]="val.id">{{val.nombre}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            
+              <button mat-raised-button class="btn btn-primary" type="submit"
+                style="margin-right: 4px; color: white; background-color: #0b5ed7;">Buscar</button>
+              <button mat-raised-button class="btn btn-info" type="button" (click)="Clear()"
+                style="background-color:#0b5ed7;; color: white;">Limpiar</button>
+            </form>
+          </div>
+          <!-- Filto inline -->
+
+          <div style="padding-bottom: 15px; text-align: end;">
+
+            <button title="Refrescar" type="submit" class="btn btn-info" (click)="refreshData()" style="margin-right: 5px;background-color: #0b5ed7;color: white;"><i class="bi bi-arrow-clockwise" style="margin-right: 5px;"></i></button>
+
+            <button type="submit" class="btn btn-success" (click)="DataExcel()"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-pdf-fill" viewBox="0 0 16 16">
+              <path d="M5.523 12.424c.14-.082.293-.162.459-.238a7.878 7.878 0 0 1-.45.606c-.28.337-.498.516-.635.572a.266.266 0 0 1-.035.012.282.282 0 0 1-.026-.044c-.056-.11-.054-.216.04-.36.106-.165.319-.354.647-.548zm2.455-1.647c-.119.025-.237.05-.356.078a21.148 21.148 0 0 0 .5-1.05 12.045 12.045 0 0 0 .51.858c-.217.032-.436.07-.654.114zm2.525.939a3.881 3.881 0 0 1-.435-.41c.228.005.434.022.612.054.317.057.466.147.518.209a.095.095 0 0 1 .026.064.436.436 0 0 1-.06.2.307.307 0 0 1-.094.124.107.107 0 0 1-.069.015c-.09-.003-.258-.066-.498-.256zM8.278 6.97c-.04.244-.108.524-.2.829a4.86 4.86 0 0 1-.089-.346c-.076-.353-.087-.63-.046-.822.038-.177.11-.248.196-.283a.517.517 0 0 1 .145-.04c.013.03.028.092.032.198.005.122-.007.277-.038.465z"/>
+              <path fill-rule="evenodd" d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm5.5 1.5v2a1 1 0 0 0 1 1h2l-3-3zM4.165 13.668c.09.18.23.343.438.419.207.075.412.04.58-.03.318-.13.635-.436.926-.786.333-.401.683-.927 1.021-1.51a11.651 11.651 0 0 1 1.997-.406c.3.383.61.713.91.95.28.22.603.403.934.417a.856.856 0 0 0 .51-.138c.155-.101.27-.247.354-.416.09-.181.145-.37.138-.563a.844.844 0 0 0-.2-.518c-.226-.27-.596-.4-.96-.465a5.76 5.76 0 0 0-1.335-.05 10.954 10.954 0 0 1-.98-1.686c.25-.66.437-1.284.52-1.794.036-.218.055-.426.048-.614a1.238 1.238 0 0 0-.127-.538.7.7 0 0 0-.477-.365c-.202-.043-.41 0-.601.077-.377.15-.576.47-.651.823-.073.34-.04.736.046 1.136.088.406.238.848.43 1.295a19.697 19.697 0 0 1-1.062 2.227 7.662 7.662 0 0 0-1.482.645c-.37.22-.699.48-.897.787-.21.326-.275.714-.08 1.103z"/>
+            </svg><i class="fas fa-file-excel" style="margin-right: 5px;"></i>Exportar a excel</button>
+          </div>
+
+          <mat-tab-group style="background-color: rgb(245 245 245)" >
+            <mat-tab label="Consultas">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-content" style="background-color: rgb(245 245 245);">
+                    <div class="card-body">
+                      <div class="col-3 ms-auto">
+                        <mat-form-field appearance="standard" style="color: black !important;">
+                          <mat-label>Buscar por:</mat-label>
+                          <input matInput (keyup)="applyFilter($event)" placeholder="Buscar" #input>
+                        </mat-form-field>
+                      </div>
+                      <div class="mat-elevation-z8">
+                        <div class="mat-elevation-z8 mt-3" style="position: relative;">
+                          <div style="display: flex;
+                          justify-content: center;
+                          align-items: center;
+                          background: rgba(255, 255, 255, 0.6);
+                          position: absolute;
+                          width: 100%;
+                          height: 100%;
+                          z-index: 1;" *ngIf="isLoading" >
+                            <mat-progress-spinner  mode="indeterminate" diameter="100">
+                            </mat-progress-spinner>
+                          </div>
+                          </div>
+                        <table mat-table [dataSource]="dataSource" matSort *ngIf="rows.length !=0" >
+
+                          <ng-container matColumnDef="NombreGeografico">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre geográfico </th>
+                            <td mat-cell *matCellDef="let row"> {{row.nombreGeografico}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="nombreLocal">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre local</th>
+                            <td mat-cell *matCellDef="let row"> {{row.nombreLocal}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="ClaseObjetoGeografico">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Clase objeto</th>
+                            <td mat-cell *matCellDef="let row"> {{row.nombreClaseObjeto}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="SubClaseGeografico">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Sub clase</th>
+                            <td mat-cell *matCellDef="let row"> {{row.nombreSubClaseObjeto}} </td>
+                          </ng-container><nav></nav>
+
+                          <ng-container matColumnDef="Region">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Región </th>
+                            <td mat-cell *matCellDef="let row"> {{row.nombreRegion}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="Provincia">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Provincia </th>
+                            <td mat-cell *matCellDef="let row"> {{row.nombreProvincia}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="Municipio">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Municipio </th>
+                            <td mat-cell *matCellDef="let row"> {{row.nombreMunicipio}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="Distrito Municipal">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Distrito Municipal </th>
+                            <td mat-cell *matCellDef="let row"> {{row.nombreDistritoMunicipal}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="Acciones">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+                            <td mat-cell *matCellDef="let row">
+                              <mat-icon id="info"
+                              class="pointer"
+                               matTooltip="Ver Información"
+                               (click)="openDetalle(row)">info
+                              </mat-icon>
+
+                              <mat-icon
+                              id="ubication"
+                              class="pointer"
+                              matTooltip="Ver localización"
+                              (click)="openMap(row)"
+                              >location_on
+                              </mat-icon>
+
+                              <mat-icon
+                              id="domento"
+                              class="pointer"
+                              matTooltip="Ver Documentos"
+                              (click)="openDocument(row)">description
+                              </mat-icon>
+
+                              <mat-icon id="image"
+                              class="pointer"
+                              matTooltip="Ver Imágenes"
+                              (click)="openImage(row)">
+                                image_search
+                              </mat-icon>
+                            </td>
+                          </ng-container>
+
+                          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                          <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell" colspan="4"> No hay datos disponibles para mostrar</td>
+                          </tr>
+                        </table>
+                        <mat-paginator
+                        #paginator_objetos
+                        *ngIf="rows.length !=0"
+                        [length]="length_objetos"
+                        [pageSize]="pageSize_objetos"
+                        [pageSizeOptions]="pageSizeOptions_objetos"
+                        (page)="paginator($event)"
+                        aria-label="Seleccionar página"
+                        [showFirstLastButtons]="true">
+                        </mat-paginator>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab label="Documentación" >
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-content">
+                    <div class="card-body" style="background-color: rgb(245 245 245);">
+                      <div class="col-3 ms-auto">
+                        <mat-form-field appearance="standard" style="color: black !important;">
+                          <mat-label>Buscar por:</mat-label>
+                          <input matInput (keyup)="applyFilterDocument($event)" placeholder="Buscar" #inputt>
+                        </mat-form-field>
+                      </div>
+                      <div class="mat-elevation-z8">
+                        <div class="mat-elevation-z8 mt-3" style="position: relative;">
+                          <div style="display: flex;
+                          justify-content: center;
+                          align-items: center;
+                          background: rgba(255, 255, 255, 0.6);
+                          position: absolute;
+                          width: 100%;
+                          height: 100%;
+                          z-index: 1;" *ngIf="isLoadingDocument" >
+                            <mat-progress-spinner  mode="indeterminate" diameter="100">
+                            </mat-progress-spinner>
+                            </div>
+                            </div>
+
+                        <table mat-table [dataSource]="dataSourceDocument" matSort *ngIf="rows_Documentos.length !=0">
+
+                          <ng-container matColumnDef="Descripcion">
+                            <th mat-header-cell *matHeaderCellDef > Descripción </th>
+                            <td mat-cell *matCellDef="let row"> {{row.descripcion}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="Extension">
+                            <th mat-header-cell *matHeaderCellDef > Extensión </th>
+                            <td mat-cell *matCellDef="let row"> {{row.extension}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="TamanoConvertido">
+                            <th mat-header-cell *matHeaderCellDef > Tamaño </th>
+                            <td mat-cell *matCellDef="let row"> {{row.tamanoConvertido}} </td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="Acciones">
+                            <th mat-header-cell *matHeaderCellDef > </th>
+                            <td mat-cell *matCellDef="let row" class="pointer" >
+                              <a class="material-icons" matTooltip="Descargar documento"   (click)="DescargarDocumentos(row.id)" ngClass="text-danger" >
+                                cloud_download
+                              </a>
+                            </td>
+                          </ng-container>
+
+                          <tr mat-header-row *matHeaderRowDef="displayedColumnsDocument"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedColumnsDocument;"></tr>
+
+                          <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell" colspan="4">No hay datos disponibles para mostrar</td>
+                          </tr>
+                        </table>
+                       <mat-paginator
+                        [length]="length_objetos"
+                        #paginator_DocumentosGenericos
+                        *ngIf="rows.length !=0"
+                        [pageSize]="pageSize_documentos"
+                        [pageSizeOptions]="pageSizeOptions_documentos"
+                        (page)="paginator($event)"
+                        aria-label="Seleccionar página"
+                        [showFirstLastButtons]="true">
+                        </mat-paginator>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+  </mat-drawer-content>
+
+</mat-drawer-container>
